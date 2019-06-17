@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -xe
+
+rm -rf cache
+mkdir cache
+
+git clone https://github.com/uber/nebula.gl.git cache/nebula.gl
+cd cache/nebula.gl
+yarn
+yarn bootstrap
+
+cd website
+yarn
+yarn build
+
+git rev-parse HEAD >public/version.txt
+
